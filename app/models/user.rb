@@ -5,5 +5,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  
+  before_create :generate_token
+
+  def generate_token
+    self.remember_token = Digest::SHA1.hexdigest SecureRandom.urlsafe_base64
+  end
 end

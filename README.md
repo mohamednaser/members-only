@@ -1,24 +1,30 @@
-# README
+# Members-only Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A project to .
 
-Things you may want to cover:
+[Click here for more information about the task ](https://www.theodinproject.com/courses/ruby-on-rails/lessons/authentication).
 
-* Ruby version
+## Authors
 
-* System dependencies
+This project was developed by:
 
-* Configuration
+- [Mohamed Naser](https://www.linkedin.com/in/mohamednaseramein/)
 
-* Database creation
+## Used Tools
 
-* Database initialization
+- Ruby On Rails
+- Ruby
 
-* How to run the test suite
+## Done Work
 
-* Services (job queues, cache servers, search engines, etc.)
+- [x] built database structure for (Users , Posts) tables .
+- [x] Use has_secure_password and authenticate functiuons to authenticate users 
+- [x] 
 
-* Deployment instructions
+## Setup
 
-* ...
+Open your git bash and cd to the location you'd like to put your files the run the command below.
+
+```console
+git clone https://github.com/mohamednaser/advanced-block-2.git
+```

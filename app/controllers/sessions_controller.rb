@@ -25,12 +25,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
 
     if @user && @user.authenticate(session_params[:password])
-      @user.remember
-
-      cookies.permanent[:remember_token] = @user.remember_token
-
+      login(@user)
       redirect_to posts_path
     else
+
       redirect_to login_path
     end
   end
@@ -49,9 +47,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  # DELETE /sessions/1
-  # DELETE /sessions/1.json
-  def destroy
+ 
+  def delete
     logout
     redirect_to login_path
   end

@@ -20,14 +20,14 @@ This project was developed by:
 
 ## Done Work
 
-- [x] built database structure for (Users , Posts) tables .
-- [x] Use has_secure_password and authenticate functiuons to authenticate users 
-- [x] Create simple login page 
+- [x] built database structure for (Users, Posts) tables.
+- [x] Use has_secure_password and authenticate function to authenticate users 
+- [x] Create a simple login page 
 - [x] Set cookies for valid login user 
 - [x] List posts for logged in users only 
-- [x] Redirect to login page for unauthoriezed users 
+- [x] Redirect to the login page for unauthorized users 
 - [x] Create new posts 
-- [X] Appear author name for authoriezed users only 
+- [X] Appear author name for authorized users only 
 ## Setup
 
 Instructions To Run The Project 

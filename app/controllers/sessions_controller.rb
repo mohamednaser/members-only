@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  before_action :set_session, only: [:show, :edit, :update, :destroy]
+  before_action :set_session, only: %i[show edit update]
 
   # GET /sessions
   # GET /sessions.json
@@ -9,30 +11,27 @@ class SessionsController < ApplicationController
 
   # GET /sessions/1
   # GET /sessions/1.json
-  def show
-  end
+  def show; end
 
   # GET /sessions/new
-  def new
-  end
+  def new; end
 
   # GET /sessions/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /sessions
   # POST /sessions.json
   def create
-    @session = Session.new(session_params)
+    @user = User.find_by(email: session_params[:email])
 
-    respond_to do |format|
-      if @session.save
-        format.html { redirect_to @session, notice: 'Session was successfully created.' }
-        format.json { render :show, status: :created, location: @session }
-      else
-        format.html { render :new }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
-      end
+    if @user && @user.authenticate(session_params[:password])
+      @user.remember
+
+      cookies.permanent[:remember_token] = @user.remember_token
+
+      redirect_to posts_path
+    else
+      redirect_to login_path
     end
   end
 
@@ -53,21 +52,19 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1
   # DELETE /sessions/1.json
   def destroy
-    @session.destroy
-    respond_to do |format|
-      format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    logout
+    redirect_to login_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_session
-      @session = Session.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def session_params
-      params.require(:session).permit(:new)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_session
+    @session = Session.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def session_params
+    params.require(:session).permit(:email, :password)
+  end
 end

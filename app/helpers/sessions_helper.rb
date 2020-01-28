@@ -20,6 +20,7 @@ module SessionsHelper
   end
 
   def is_logged?
+    current_user
     !@curent_user.nil?
   end
 end

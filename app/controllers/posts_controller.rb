@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :check_login , only: [:create, :new]
+  before_action :check_login, only: [:create, :new]
 
   # GET /posts
   # GET /posts.json
